@@ -70,9 +70,7 @@ button { font: inherit; color: inherit; }
   background: none;
   cursor: pointer;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.15rem;
+  align-items: center;
   padding-top: 0.15rem;
 }
 .lang-toggle .lang-code {
@@ -81,19 +79,10 @@ button { font: inherit; color: inherit; }
   font-size: 1.5rem;
   line-height: 1;
 }
-.lang-toggle .lang-cap {
-  font-size: 0.5rem;
-  letter-spacing: 0.18em;
-  text-transform: lowercase;
-  color: var(--muted);
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  line-height: 1.1;
-}
 .lang-toggle:hover .lang-code { opacity: 0.6; }
 
 .hdr-logo { justify-self: center; }
-.hdr-logo img { height: 46px; width: auto; object-fit: contain; }
+.hdr-logo img { height: 96px; width: auto; object-fit: contain; }
 
 .hdr-cart {
   justify-self: end;
@@ -168,7 +157,10 @@ main {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 1.5rem 1.5rem 5rem;
+  transition: opacity 0.22s ease;
 }
+/* Fundido suave al cambiar de idioma (se conmuta desde layout.js). */
+main.lang-fade { opacity: 0; }
 
 .estado { padding: 3rem 0; color: var(--muted); font-style: italic; }
 
@@ -224,12 +216,11 @@ main {
 .galeria { position: relative; }
 .galeria-stage {
   position: relative;
-  aspect-ratio: 3 / 4;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
-.galeria-stage img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.galeria-stage img { max-width: 100%; max-height: 80vh; object-fit: contain; }
 .galeria-nav {
   position: absolute;
   top: 50%;
@@ -512,7 +503,7 @@ main {
   .qnc-header { padding: 0.8rem 1rem 0.5rem; }
   .btn-menu { font-size: 1.5rem; }
   .lang-toggle .lang-code { font-size: 1.2rem; }
-  .hdr-logo img { height: 34px; }
+  .hdr-logo img { height: 60px; }
   .hdr-cart img { height: 46px; }
 
   .tienda-grid, .autores-grid { grid-template-columns: repeat(2, 1fr); gap: 1.6rem 1rem; }

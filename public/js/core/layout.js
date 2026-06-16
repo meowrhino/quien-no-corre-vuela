@@ -27,7 +27,6 @@ function build() {
         <button class="btn-menu" data-menu-open type="button"><span data-i18n="menu">menú</span></button>
         <button class="lang-toggle" data-lang-toggle type="button" title="idioma">
           <span class="lang-code">${I18N.label()}</span>
-          <span class="lang-cap" data-i18n="idioma">idioma</span>
         </button>
       </div>
       <a class="hdr-logo" href="index.html" aria-label="${CONFIG.TIENDA_NOMBRE}">
@@ -66,7 +65,16 @@ function wire() {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
 
   const toggle = document.querySelector("[data-lang-toggle]");
-  toggle?.addEventListener("click", () => I18N.cycle());
+  // Fundido suave: oculta el contenido, cambia de idioma mientras está invisible, y reaparece.
+  toggle?.addEventListener("click", () => {
+    const main = document.querySelector("main");
+    if (!main) return I18N.cycle();
+    main.classList.add("lang-fade");
+    setTimeout(() => {
+      I18N.cycle();
+      main.classList.remove("lang-fade");
+    }, 220);
+  });
   document.addEventListener("qnc:lang", () => {
     const code = toggle?.querySelector(".lang-code");
     if (code) code.textContent = I18N.label();
