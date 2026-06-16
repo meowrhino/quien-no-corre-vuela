@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Newsletter · Quien no corre, vuela</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="module" src="js/pages/newsletter.js"></script>
+  </head>
+  <body>
+    <main>
+      <section class="pagina-info">
+        <div class="info-foto">
+          <img src="img/sello.webp" alt="Quien no corre, vuela" />
+        </div>
+        <div class="info-texto">
+          <p class="lead" data-i18n="news.title">apúntate a nuestra newsletter!!!</p>
+          <form class="form-bloque" data-newsletter novalidate>
+            <input type="email" name="email" required data-i18n-ph="news.placeholder" autocomplete="email" />
+            <div><button type="submit" data-i18n="news.send">enviar</button></div>
+            <div class="form-feedback" data-feedback></div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

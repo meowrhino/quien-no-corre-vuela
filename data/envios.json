@@ -1,0 +1,49 @@
+[
+  {
+    "zona": "recogida",
+    "nombre": { "es": "Recogida en mano", "ca": "Recollida en mà", "en": "Local pickup" },
+    "tramos": [
+      { "hasta": 100000, "precio": 0 }
+    ]
+  },
+  {
+    "zona": "peninsula",
+    "nombre": { "es": "España peninsular", "ca": "Espanya peninsular", "en": "Mainland Spain" },
+    "tramos": [
+      { "hasta": 500, "precio": 3.50 },
+      { "hasta": 1000, "precio": 4.90 },
+      { "hasta": 2000, "precio": 6.50 },
+      { "hasta": 100000, "precio": 9.00 }
+    ]
+  },
+  {
+    "zona": "baleares-canarias",
+    "nombre": { "es": "Baleares y Canarias", "ca": "Balears i Canàries", "en": "Balearic & Canary Islands" },
+    "tramos": [
+      { "hasta": 500, "precio": 5.50 },
+      { "hasta": 1000, "precio": 7.50 },
+      { "hasta": 2000, "precio": 10.00 },
+      { "hasta": 100000, "precio": 14.00 }
+    ]
+  },
+  {
+    "zona": "europa",
+    "nombre": { "es": "Europa", "ca": "Europa", "en": "Europe" },
+    "tramos": [
+      { "hasta": 500, "precio": 8.00 },
+      { "hasta": 1000, "precio": 11.00 },
+      { "hasta": 2000, "precio": 15.00 },
+      { "hasta": 100000, "precio": 22.00 }
+    ]
+  },
+  {
+    "zona": "internacional",
+    "nombre": { "es": "Resto del mundo", "ca": "Resta del món", "en": "Rest of the world" },
+    "tramos": [
+      { "hasta": 500, "precio": 14.00 },
+      { "hasta": 1000, "precio": 19.00 },
+      { "hasta": 2000, "precio": 26.00 },
+      { "hasta": 100000, "precio": 38.00 }
+    ]
+  }
+]

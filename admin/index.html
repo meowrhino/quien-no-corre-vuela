@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin · Quien no corre, vuela</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <main class="admin">
+      <h1>Admin</h1>
+
+      <section>
+        <h2>Token</h2>
+        <input id="token" type="password" placeholder="ADMIN_TOKEN" />
+        <button id="save">Guardar</button>
+      </section>
+
+      <nav style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem">
+        <a href="tickets.html">Pedidos</a>
+        <a href="stock.html">Stock</a>
+        <a href="newsletter.html">Newsletter</a>
+        <a href="mensajes.html">Mensajes</a>
+      </nav>
+    </main>
+
+    <script>
+      const input = document.getElementById("token");
+      input.value = localStorage.getItem("qnc.admin") || "";
+      document.getElementById("save").addEventListener("click", () => {
+        localStorage.setItem("qnc.admin", input.value.trim());
+        alert("Token guardado");
+      });
+    </script>
+  </body>
+</html>

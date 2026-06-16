@@ -1,0 +1,22 @@
+# Dependencias
+node_modules/
+
+# Secretos (NUNCA al repo)
+.env
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+
+# Cloudflare / wrangler
+.wrangler/
+
+# Config local del editor
+.vscode/
+.claude/settings.local.json
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+**/.DS_Store

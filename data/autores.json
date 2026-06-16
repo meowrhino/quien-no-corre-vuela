@@ -1,0 +1,32 @@
+[
+  {
+    "id": "andrea-carilla",
+    "nombre": "Andrea Carilla",
+    "foto": "",
+    "bio": {
+      "es": "TODO: biografía de Andrea Carilla (pendiente de texto).",
+      "ca": "TODO: biografia d'Andrea Carilla (pendent de text).",
+      "en": "TODO: Andrea Carilla's bio (text pending)."
+    }
+  },
+  {
+    "id": "sofia-milena",
+    "nombre": "Sofia Milena",
+    "foto": "",
+    "bio": {
+      "es": "TODO: biografía de Sofia Milena (pendiente de texto).",
+      "ca": "TODO: biografia de Sofia Milena (pendent de text).",
+      "en": "TODO: Sofia Milena's bio (text pending)."
+    }
+  },
+  {
+    "id": "mia-sala-patau",
+    "nombre": "Mía Sala-Patau",
+    "foto": "",
+    "bio": {
+      "es": "TODO: biografía de Mía Sala-Patau (pendiente de texto).",
+      "ca": "TODO: biografia de Mía Sala-Patau (pendent de text).",
+      "en": "TODO: Mía Sala-Patau's bio (text pending)."
+    }
+  }
+]

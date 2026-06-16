@@ -1,0 +1,56 @@
+[
+  {
+    "id": "empreses-impreses-2025",
+    "titulo": "Empreses Impreses amb Presses",
+    "lugar": "Barcelona",
+    "tipo": { "es": "feria de autoedición", "ca": "fira d'autoedició", "en": "self-publishing fair" },
+    "fechaInicio": "2025-05-08",
+    "fechaFin": "2025-05-08",
+    "cartel": ""
+  },
+  {
+    "id": "1-metro-zine-2025",
+    "titulo": "1 metro zine",
+    "lugar": "Granada",
+    "tipo": { "es": "feria de autoedición", "ca": "fira d'autoedició", "en": "self-publishing fair" },
+    "fechaInicio": "2025-05-24",
+    "fechaFin": "2025-05-24",
+    "cartel": ""
+  },
+  {
+    "id": "xiringuito-2025",
+    "titulo": "Xiringuito",
+    "lugar": "Can Basté, Barcelona",
+    "tipo": { "es": "feria de autoedición", "ca": "fira d'autoedició", "en": "self-publishing fair" },
+    "fechaInicio": "2025-05-31",
+    "fechaFin": "2025-05-31",
+    "cartel": ""
+  },
+  {
+    "id": "exabrupto-2025",
+    "titulo": "Exabrupto",
+    "lugar": "Moià",
+    "tipo": { "es": "festival experimental de creación contemporánea", "ca": "festival experimental de creació contemporània", "en": "experimental contemporary art festival" },
+    "fechaInicio": "2025-07-05",
+    "fechaFin": "2025-07-05",
+    "cartel": ""
+  },
+  {
+    "id": "bala-bilbao-2025",
+    "titulo": "Bala Bilbao",
+    "lugar": "Bilbao",
+    "tipo": { "es": "feria de autoedición", "ca": "fira d'autoedició", "en": "self-publishing fair" },
+    "fechaInicio": "2025-12-12",
+    "fechaFin": "2025-12-14",
+    "cartel": ""
+  },
+  {
+    "id": "presentacion-center-world-2026",
+    "titulo": "Presentación · I am the center of the world",
+    "lugar": "Kiosko, Barcelona",
+    "tipo": { "es": "evento de presentación", "ca": "esdeveniment de presentació", "en": "book launch" },
+    "fechaInicio": "2026-02-01",
+    "fechaFin": "2026-02-01",
+    "cartel": ""
+  }
+]

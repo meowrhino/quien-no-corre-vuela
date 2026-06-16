@@ -1,0 +1,186 @@
+[
+  {
+    "id": "archivo-en-pixel",
+    "titulo": ["Archivo en Pixel"],
+    "autor": "Andrea Carilla",
+    "autorId": "andrea-carilla",
+    "precio": 15.00,
+    "peso": 80,
+    "imgs": [
+      "img/productos/archivo-en-pixel/1.webp",
+      "img/productos/archivo-en-pixel/2.webp",
+      "img/productos/archivo-en-pixel/3.webp",
+      "img/productos/archivo-en-pixel/4.webp",
+      "img/productos/archivo-en-pixel/5.webp",
+      "img/productos/archivo-en-pixel/6.webp",
+      "img/productos/archivo-en-pixel/7.webp",
+      "img/productos/archivo-en-pixel/8.webp"
+    ],
+    "ficha": {
+      "editorial": "quien no corre, vuela",
+      "encuadernacion": { "es": "pinzado", "ca": "pinçat", "en": "clip-bound" },
+      "paginas": 32,
+      "medidas": "140,3 × 185 mm",
+      "anio": { "es": "febrero 2025", "ca": "febrer 2025", "en": "February 2025" },
+      "edicion": { "es": "1ª edición · 50 copias", "ca": "1a edició · 50 còpies", "en": "1st edition · 50 copies" }
+    },
+    "descripcion": {
+      "es": "“Archivo en Pixel” es un fanzine que recopila el rastro fotográfico almacenado en el móvil de Andrea durante 2019. Imágenes capturadas, enviadas, reenviadas, recortadas, ampliadas y descargadas, la única copia que conserva, todas en baja resolución. A partir de este archivo digital efímero, la autora da forma a una narrativa visual que reconstruye sus vivencias de aquel año, en un proceso de autoconocimiento y revalorización de la imagen pobre. Un gesto que otorga validez a lo pixelado, reivindicándolo como parte del lenguaje fotográfico.\n\nUna memoria difusa, como estas imágenes: fragmentadas y borrosas.",
+      "ca": "“Archivo en Pixel” és un fanzine que recopila el rastre fotogràfic emmagatzemat al mòbil de l’Andrea durant l’any 2019. Imatges capturades, enviades, reenviades, retallades, ampliades i descarregades, l’única còpia que conserva, totes en baixa resolució. A partir d’aquest arxiu digital efímer, l’autora dona forma a una narrativa visual que reconstrueix les seves vivències d’aquell any, en un procés d’autoconeixement i revalorització de la imatge pobra. Un gest que atorga validesa al pixelat, reivindicant-lo com a part del llenguatge fotogràfic.\n\nUna memòria difusa, com aquestes imatges: fragmentades i borroses.",
+      "en": "“Archivo en Pixel” is a fanzine that gathers the photographic traces stored on Andrea’s phone throughout 2019. Images captured, sent, forwarded, cropped, enlarged, and downloaded — the only copies she still keeps, all in low resolution. From this ephemeral digital archive, the author shapes a visual narrative that reconstructs her experiences of that year through a process of self-discovery and a revaluation of the poor image. A gesture that grants validity to the pixelated, reclaiming it as part of the photographic language.\n\nA blurred memory, like these images: fragmented and out of focus."
+    },
+    "stockInicial": 50,
+    "activo": true
+  },
+  {
+    "id": "pont-neuf",
+    "titulo": ["Pont Neuf", "Diario de Laboratorio I"],
+    "autor": "Sofia Milena",
+    "autorId": "sofia-milena",
+    "precio": 12.00,
+    "peso": 130,
+    "imgs": [
+      "img/productos/pont-neuf/1.webp",
+      "img/productos/pont-neuf/2.webp",
+      "img/productos/pont-neuf/3.webp",
+      "img/productos/pont-neuf/4.webp",
+      "img/productos/pont-neuf/5.webp",
+      "img/productos/pont-neuf/6.webp",
+      "img/productos/pont-neuf/7.webp",
+      "img/productos/pont-neuf/8.webp"
+    ],
+    "ficha": {
+      "editorial": "quien no corre, vuela",
+      "encuadernacion": { "es": "cosido", "ca": "cosit", "en": "sewn-bound" },
+      "paginas": null,
+      "medidas": "148 × 210 mm",
+      "anio": { "es": "febrero 2025", "ca": "febrer 2025", "en": "February 2025" },
+      "edicion": { "es": "2ª edición · 20 copias", "ca": "2a edició · 20 còpies", "en": "2nd edition · 20 copies" }
+    },
+    "descripcion": {
+      "es": "El fanzine “Pont Neuf” gira en torno a la idea de proceso. Por un lado, el proceso técnico que tiene lugar en el laboratorio analógico (aprender una nueva técnica —en este caso, el positivado Lith—) con todo lo que conlleva la propia naturaleza de aprender: errores, apuntes y diferentes versiones de una misma imagen, y que el propio tiempo va dejando huella de una evolución y una mejora, a veces sutil, otras más evidente.\n\nDe forma simultánea, se presenta un recorrido por diferentes ciudades y los retratos de una misma persona en diferentes momentos a lo largo de un año, como testigos de un vínculo. Las imágenes se mezclan entre escritos y pruebas. Al fin y al cabo, ¿no es un vínculo algo que se construye con el tiempo, con aciertos y errores, con cambios y aprendizajes?",
+      "ca": "El fanzine “Pont Neuf” gira al voltant de la idea de procés. D’una banda, procés tècnic que té lloc al laboratori analògic (aprendre una nova tècnica —en aquest cas, el positivat Lith—) amb tot allò que comporta la pròpia naturalesa d’aprendre: errors, apunts i diferents versions d’una mateixa imatge i que el propi temps va deixant empremta d’una evolució i una millora, de vegades subtil, d’altres més evident.\n\nDe forma simultànea, es presenta un recorregut per diferents ciutats i els retrats d’una mateixa persona en diferents moments al llarg d’un any, com a testimonis d’un vincle; les imatges es barregen entre escrits i proves. Al cap i a la fi, ¿no és un vincle quelcom que es construeix amb el temps, amb encerts i errors, amb canvis i aprenentatges?",
+      "en": "The fanzine “Pont Neuf” revolves around the idea of process which, on the one hand, reveals the technical process that takes place in the analog darkroom (learning a new technique —in this case, Lith printing—) along with everything inherent to the act of learning itself: mistakes, notes, and different versions of the same image, where time itself leaves traces of evolution and improvement, sometimes subtle, other times more evident.\n\nAt the same time, it presents a journey through different cities and portraits of the same person at different moments over the course of a year, as witnesses to a bond. The images intertwine with writings and test prints. After all, isn’t a bond something that is built over time, through successes and mistakes, changes and learning?"
+    },
+    "stockInicial": 20,
+    "activo": true
+  },
+  {
+    "id": "black-cover",
+    "titulo": ["Black cover"],
+    "autor": "Andrea Carilla",
+    "autorId": "andrea-carilla",
+    "precio": 6.00,
+    "peso": 30,
+    "imgs": [
+      "img/productos/black-cover/1.webp",
+      "img/productos/black-cover/2.webp",
+      "img/productos/black-cover/3.webp",
+      "img/productos/black-cover/4.webp",
+      "img/productos/black-cover/5.webp"
+    ],
+    "ficha": {
+      "editorial": "quien no corre, vuela",
+      "encuadernacion": { "es": "grapa", "ca": "grapa", "en": "staple-bound" },
+      "paginas": 10,
+      "medidas": "71 × 106 mm",
+      "anio": { "es": "abril 2025", "ca": "abril 2025", "en": "April 2025" },
+      "edicion": { "es": "1ª edición · 20 copias", "ca": "1a edició · 20 còpies", "en": "1st edition · 20 copies" }
+    },
+    "descripcion": {
+      "es": "Fotografías hechas durante la Semana Santa de Granada, 2025.",
+      "ca": "Fotografies fetes durant la Setmana Santa de Granada, 2025.",
+      "en": "Photographs taken during Holy Week in Granada, 2025."
+    },
+    "stockInicial": 20,
+    "activo": true
+  },
+  {
+    "id": "i-am-the-center-of-the-world",
+    "titulo": ["I am the center of the world"],
+    "autor": "Mía Sala-Patau",
+    "autorId": "mia-sala-patau",
+    "precio": 12.00,
+    "peso": 90,
+    "imgs": [
+      "img/productos/i-am-the-center-of-the-world/1.webp",
+      "img/productos/i-am-the-center-of-the-world/2.webp",
+      "img/productos/i-am-the-center-of-the-world/3.webp",
+      "img/productos/i-am-the-center-of-the-world/4.webp",
+      "img/productos/i-am-the-center-of-the-world/5.webp"
+    ],
+    "ficha": {
+      "editorial": "quien no corre, vuela",
+      "encuadernacion": { "es": "encolado", "ca": "encolat", "en": "perfect-bound" },
+      "paginas": 44,
+      "medidas": "221 × 90 mm",
+      "anio": { "es": "diciembre 2025", "ca": "desembre 2025", "en": "December 2025" },
+      "edicion": { "es": "1ª edición · 50 copias", "ca": "1a edició · 50 còpies", "en": "1st edition · 50 copies" }
+    },
+    "descripcion": {
+      "es": "pictures from random lives del día que nací*\n\nEl recuerdo de un internet donde la necesidad de compartir generaba una memoria colectiva que, hoy en día, es un archivo vivo y me permite saber —a una escala minúscula— qué estaba pasando el día en que nací.\n\n*o cómo dejar de ser el centro del mundo.",
+      "ca": "pictures from random lives del dia que vaig néixer*\n\nEl record d’un internet on la necessitat de compartir generava una memòria col·lectiva que avui en dia és un arxiu viu i em permet saber —en una minúscula escala— què passava el dia que jo naixia.\n\n*o com deixar de ser el centre del món.",
+      "en": "pictures from random lives from the day i was born*\n\nThe memory of an internet where the need to share created a collective memory that today remains a living archive, allowing me to know —on a tiny scale— what was happening on the day i was born.\n\n*or how to stop being the center of the world."
+    },
+    "stockInicial": 50,
+    "activo": true
+  },
+  {
+    "id": "la-mort-i-la-primavera",
+    "titulo": ["La mort i la primavera"],
+    "autor": "Sofia Milena",
+    "autorId": "sofia-milena",
+    "precio": 16.00,
+    "peso": 180,
+    "imgs": [
+      "img/productos/la-mort-i-la-primavera/1.webp",
+      "img/productos/la-mort-i-la-primavera/2.webp",
+      "img/productos/la-mort-i-la-primavera/3.webp",
+      "img/productos/la-mort-i-la-primavera/4.webp",
+      "img/productos/la-mort-i-la-primavera/5.webp",
+      "img/productos/la-mort-i-la-primavera/6.webp",
+      "img/productos/la-mort-i-la-primavera/7.webp",
+      "img/productos/la-mort-i-la-primavera/8.webp",
+      "img/productos/la-mort-i-la-primavera/9.webp"
+    ],
+    "ficha": {
+      "editorial": "quien no corre, vuela",
+      "encuadernacion": { "es": "cosido", "ca": "cosit", "en": "sewn-bound" },
+      "paginas": 68,
+      "medidas": "148 × 210 mm",
+      "anio": { "es": "junio 2026", "ca": "juny 2026", "en": "June 2026" },
+      "edicion": { "es": "1ª edición · 50 copias", "ca": "1a edició · 50 còpies", "en": "1st edition · 50 copies" }
+    },
+    "descripcion": {
+      "es": "La publicación “La mort i la primavera; Diarios de Laboratorio II: Positivado a color” recoge las imágenes elaboradas durante el proceso de aprendizaje del positivado a color. En este diario se reúnen vivencias y sucesos de forma íntima y vulnerable: el amor, la pérdida de seres queridos, la amistad, el desamor y el inevitable paso del tiempo.\n\nEl título aparece como una premonición, un futuro que está preparado para ser cumplido.",
+      "ca": "La publicació “La mort i la primavera; Diaris de Laboratori II: Positivat en color” recull les imatges elaborades durant el procés d’aprenentatge del positivat en color. En aquest diari s’hi reuneixen vivències i esdeveniments de manera íntima i vulnerable: l’amor, la pèrdua d’éssers estimats, l’amistat, el desamor i l’inevitable pas del temps.\n\nEl títol apareix com una premonició, un futur que està preparat per ser complert.",
+      "en": "“La mort i la primavera; Laboratory Diaries II: Color Printing” brings together the images created during the process of learning color photographic printing. This diary gathers experiences and events in an intimate and vulnerable way: love, the loss of loved ones, friendship, heartbreak, and the inevitable passage of time.\n\nThe title appears as a premonition, a future already poised to be fulfilled."
+    },
+    "stockInicial": 50,
+    "activo": true
+  },
+  {
+    "id": "no-time-left-for-the-square",
+    "titulo": ["No time left for the square"],
+    "autor": "Andrea Carilla",
+    "autorId": "andrea-carilla",
+    "precio": 12.00,
+    "peso": 130,
+    "imgs": [],
+    "ficha": {
+      "editorial": "quien no corre, vuela",
+      "encuadernacion": { "es": "", "ca": "", "en": "" },
+      "paginas": null,
+      "medidas": "148 × 210 mm",
+      "anio": { "es": "julio 2026", "ca": "juliol 2026", "en": "July 2026" },
+      "edicion": { "es": "1ª edición · 50 copias", "ca": "1a edició · 50 còpies", "en": "1st edition · 50 copies" }
+    },
+    "descripcion": {
+      "es": "Próximamente.",
+      "ca": "Pròximament.",
+      "en": "Coming soon."
+    },
+    "stockInicial": 50,
+    "activo": false
+  }
+]
