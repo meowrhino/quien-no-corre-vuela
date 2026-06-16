@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "wrangler pages dev . --compatibility-flags=nodejs_compat",
     "deploy": "wrangler pages deploy .",
-    "db:init": "wrangler d1 execute shop --file=./data/schema.sql",
+    "db:init": "wrangler d1 execute shop --remote --file=./data/schema.sql",
     "db:init:local": "wrangler d1 execute shop --local --file=./data/schema.sql"
   },
   "dependencies": {

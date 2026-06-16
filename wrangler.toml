@@ -11,7 +11,7 @@ pages_build_output_dir = "."
 [[d1_databases]]
 binding = "DB"
 database_name = "shop"
-database_id = "PEGA_AQUI_EL_ID_DEVUELTO_POR_D1_CREATE"
+database_id = "c23fac51-583e-4610-ab77-72f5efe31ec6"
 
 # Variables NO secretas (se pueden commitear).
 [vars]
