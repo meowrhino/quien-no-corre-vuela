@@ -44,7 +44,9 @@ function galeriaHTML() {
         <img data-stage src="${p.imgs[idx]}" alt="${escapeHtml(p.titulo.join(" "))}" />
         ${multi ? `<button class="galeria-nav next" data-next aria-label="siguiente">›</button>` : ""}
       </div>
-      ${multi ? `<div class="galeria-dots">${p.imgs.map((_, i) => `<span class="${i === idx ? "on" : ""}" data-dot="${i}"></span>`).join("")}</div>` : ""}
+      ${multi ? `<div class="galeria-thumbs">${p.imgs
+        .map((src, i) => `<button class="${i === idx ? "on" : ""}" data-thumb="${i}" type="button" aria-label="imagen ${i + 1}"><img src="${src}" alt="" loading="lazy"></button>`)
+        .join("")}</div>` : ""}
     </div>`;
 }
 
@@ -77,12 +79,14 @@ function render() {
   const go = (n) => {
     idx = (n + p.imgs.length) % p.imgs.length;
     stage.src = p.imgs[idx];
-    root.querySelectorAll("[data-dot]").forEach((d, i) => d.classList.toggle("on", i === idx));
+    const activa = root.querySelectorAll("[data-thumb]");
+    activa.forEach((t, i) => t.classList.toggle("on", i === idx));
+    activa[idx]?.scrollIntoView({ block: "nearest", inline: "nearest" });
   };
   root.querySelector("[data-prev]")?.addEventListener("click", () => go(idx - 1));
   root.querySelector("[data-next]")?.addEventListener("click", () => go(idx + 1));
-  root.querySelectorAll("[data-dot]").forEach((d) =>
-    d.addEventListener("click", () => go(Number(d.dataset.dot)))
+  root.querySelectorAll("[data-thumb]").forEach((t) =>
+    t.addEventListener("click", () => go(Number(t.dataset.thumb)))
   );
 
   root.querySelector("[data-add]")?.addEventListener("click", (e) => {
