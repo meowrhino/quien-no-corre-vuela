@@ -1,25 +1,27 @@
 name = "quien-no-corre-vuela"
+main = "src/index.js"
 compatibility_date = "2025-04-01"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "."
 
-# D1 — SQLite serverless
-# 1. Crea la DB:        wrangler d1 create shop
-# 2. Copia el database_id que te devuelva aquí abajo.
-# 3. Aplica schema:     npm run db:init
-# 4. (Opcional) seed:   npm run db:seed
+# Static assets: Cloudflare sirve la carpeta public/ (la web) automáticamente.
+# El Worker (main) solo atiende /api/*; cualquier ruta que coincida con un archivo de
+# public/ se sirve directa sin ejecutar el Worker.
+[assets]
+directory = "./public"
+
+# D1 — SQLite serverless. Solo guarda lo mutable (stock, pedidos, newsletter, mensajes).
+# El catálogo vive en public/data/*.json (se edita y se hace push).
 [[d1_databases]]
 binding = "DB"
 database_name = "shop"
 database_id = "c23fac51-583e-4610-ab77-72f5efe31ec6"
 
-# Variables NO secretas (se pueden commitear).
+# Variables NO secretas (se pueden commitear). Vacío = el Worker usa el origen de la petición.
 [vars]
-FRONTEND_URL = "https://quien-no-corre-vuela.pages.dev"
+FRONTEND_URL = ""
 
-# Los secretos se añaden con CLI, NO van aquí:
-#   wrangler pages secret put STRIPE_SECRET_KEY
-#   wrangler pages secret put STRIPE_WEBHOOK_SECRET
-#   wrangler pages secret put ADMIN_TOKEN
-#
-# Para desarrollo local, usa .dev.vars (ver .dev.vars.example).
+# Los secretos se añaden por CLI (NO van aquí):
+#   npx wrangler secret put STRIPE_SECRET_KEY
+#   npx wrangler secret put STRIPE_WEBHOOK_SECRET
+#   npx wrangler secret put ADMIN_TOKEN
+# En local van en .dev.vars (ver .dev.vars.example).

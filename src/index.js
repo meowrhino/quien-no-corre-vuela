@@ -1,9 +1,12 @@
 /**
- * [[route]].js — backend en Cloudflare Pages Functions (Hono).
+ * src/index.js — backend en un Cloudflare Worker (Hono).
+ *
+ * Worker con "static assets": Cloudflare sirve `public/` (la web) automáticamente y este
+ * Worker solo atiende las rutas `/api/*`. Cualquier otra ruta no encontrada cae aquí y devuelve 404.
  *
  * Filosofía JAMstack (de la semilla):
- *   - CATÁLOGO (productos, precios, peso, descripciones i18n) → data/productos.json (source of truth).
- *   - ENVÍOS (zonas + tramos por peso) → data/envios.json.
+ *   - CATÁLOGO (productos, precios, peso, descripciones i18n) → public/data/productos.json (source of truth).
+ *   - ENVÍOS (zonas + tramos por peso) → public/data/envios.json.
  *   - D1 sólo guarda lo MUTABLE: stock vivo, pedidos, altas de newsletter y mensajes de contacto.
  *
  * El precio/nombre/peso es SIEMPRE el del JSON desplegado; el cliente no puede manipularlo.
@@ -13,11 +16,10 @@
  */
 
 import { Hono } from "hono";
-import { handle } from "hono/cloudflare-pages";
 import Stripe from "stripe";
 
-import productos from "../../data/productos.json";
-import envios from "../../data/envios.json";
+import productos from "../public/data/productos.json";
+import envios from "../public/data/envios.json";
 
 const app = new Hono().basePath("/api");
 
@@ -342,4 +344,5 @@ admin.post("/stock-bulk", async (c) => {
 
 app.route("/admin", admin);
 
-export const onRequest = handle(app);
+// El Worker: Hono atiende /api/*; los assets de public/ los sirve Cloudflare automáticamente.
+export default app;
