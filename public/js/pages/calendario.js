@@ -17,7 +17,6 @@ const TZ = "Europe/Madrid";
 const track = document.querySelector("[data-cal-track]");
 const marker = document.querySelector("[data-marker]");
 const mDate = document.querySelector("[data-marker-date]");
-const mTime = document.querySelector("[data-marker-time]");
 
 let eventos = [];
 const LOCALE = { es: "es-ES", ca: "ca-ES", en: "en-GB" };
@@ -44,7 +43,7 @@ function fmtFechaLarga(ev) {
 
 function cardHTML(ev) {
   const cartel = ev.cartel
-    ? `<div class="evento-cartel"><img src="${ev.cartel}" alt="${escapeHtml(ev.titulo)}" loading="lazy"></div>`
+    ? `<div class="evento-cartel"><img src="${ev.cartel}" alt="${escapeHtml(ev.titulo)}"></div>`
     : `<div class="evento-cartel evento-cartel--vacio"></div>`;
   return `
     <article class="evento" data-snap data-fecha="${ddmm(ev.fechaInicio)}" data-iso="${ev.fechaInicio}">
@@ -76,9 +75,15 @@ function render() {
   if (!nowDone) html += nowSlotHTML(hoy); // hoy es posterior a todos → a la derecha
   track.innerHTML = html;
 
-  requestAnimationFrame(() => {
-    track.querySelector("[data-now-slot]")?.scrollIntoView({ inline: "center", block: "nearest" });
+  // Centra "hoy". Como los carteles no reservan alto hasta cargar, recentramos cuando
+  // van cargando (si no, el scroll se calcula sobre un layout colapsado).
+  const centrarHoy = () => {
+    track.querySelector("[data-now-slot]")?.scrollIntoView({ inline: "center", block: "nearest", behavior: "instant" });
     updateMarker();
+  };
+  requestAnimationFrame(centrarHoy);
+  track.querySelectorAll(".evento-cartel img").forEach((im) => {
+    if (!im.complete) im.addEventListener("load", centrarHoy, { once: true });
   });
 }
 
@@ -100,12 +105,6 @@ function updateMarker() {
   track.querySelectorAll(".is-center").forEach((e) => e.classList.remove("is-center"));
   el.classList.add("is-center");
   mDate.textContent = el.dataset.fecha;
-  if (el.hasAttribute("data-now-slot")) {
-    mTime.textContent = new Intl.DateTimeFormat(locale(), { timeZone: TZ, hour: "2-digit", minute: "2-digit" }).format(new Date());
-    mTime.hidden = false;
-  } else {
-    mTime.hidden = true;
-  }
   marker.hidden = false;
 }
 
@@ -125,9 +124,6 @@ async function init() {
     return;
   }
   render();
-  setInterval(() => {
-    if (track.querySelector(".is-center")?.hasAttribute("data-now-slot")) updateMarker();
-  }, 30000);
 }
 
 init();

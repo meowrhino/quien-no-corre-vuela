@@ -458,7 +458,7 @@ main.lang-fade { opacity: 0; }
 .cal-track {
   display: flex;
   gap: 1.8rem;
-  align-items: center;
+  align-items: flex-start;
   overflow-x: auto;
   padding-block: 1rem;
   padding-inline: calc(50% - 115px); /* deja centrar el primero y el último */
@@ -478,30 +478,21 @@ main.lang-fade { opacity: 0; }
   transition: opacity 0.25s ease;
 }
 .evento.is-center { opacity: 1; }
-.evento-cartel {
-  aspect-ratio: 3 / 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-bottom: 0.6rem;
-}
-.evento-cartel img { width: 100%; height: 100%; object-fit: contain; }
-.evento-cartel--vacio { background: #f3f3f3; }
+/* El cartel se muestra entero, a su proporción natural (sin recorte ni marco). */
+.evento-cartel { margin-bottom: 0.6rem; }
+.evento-cartel img { width: 100%; height: auto; display: block; }
+.evento-cartel--vacio { aspect-ratio: 3 / 4; background: #f3f3f3; }
 .evento-fecha { font-size: 0.8rem; letter-spacing: 0.04em; color: var(--muted); }
 .evento-titulo { font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; line-height: 1.15; margin: 0.15rem 0; }
 .evento-tipo { font-size: 0.82rem; }
 .evento-lugar { font-size: 0.82rem; color: var(--muted); }
 
-/* Posición de "hoy" en la línea temporal: columna del ancho de un evento con una
-   línea de puntos vertical centrada (para que pueda centrarse igual que los eventos). */
+/* Posición de "hoy" en la línea temporal: hueco invisible (solo para poder centrar el "ahora"). */
 .cal-now {
   flex: 0 0 auto;
   width: 230px;
   align-self: stretch;
   scroll-snap-align: center;
-  background: repeating-linear-gradient(to bottom, var(--fg) 0 4px, transparent 4px 9px) center / 2px 100% no-repeat;
-  opacity: 0.4;
 }
 
 /* Marcador fijo en el centro: ︿ + día + hora (pequeña). */
