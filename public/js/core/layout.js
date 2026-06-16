@@ -2,8 +2,8 @@
  * core/layout.js — cabecera y menú compartidos.
  *
  * mountLayout() inyecta al principio del <body>:
- *   - Cabecera: [menú] [idioma]  ·  logo (centro)  ·  carrito (derecha)
- *   - Menú lateral (drawer) con la navegación.
+ *   - Cabecera: [menú] (izq, esquina)  ·  logo (centro)  ·  carrito (derecha)
+ *   - Menú lateral (drawer): navegación + selector de idioma al pie.
  * Aplica i18n, conecta los eventos y pinta el badge del carrito. Llamar una vez por página.
  */
 import { CONFIG } from "./config.js";
@@ -23,12 +23,7 @@ function build() {
   const wrap = document.createElement("div");
   wrap.innerHTML = `
     <header class="qnc-header">
-      <div class="hdr-left">
-        <button class="btn-menu" data-menu-open type="button"><span data-i18n="menu">menú</span></button>
-        <button class="lang-toggle" data-lang-toggle type="button" title="idioma">
-          <span class="lang-code">${I18N.label()}</span>
-        </button>
-      </div>
+      <button class="btn-menu" data-menu-open type="button"><span data-i18n="menu">menú</span></button>
       <a class="hdr-logo" href="index.html" aria-label="${CONFIG.TIENDA_NOMBRE}">
         <img src="img/logo.webp" alt="${CONFIG.TIENDA_NOMBRE}" />
       </a>
@@ -43,6 +38,9 @@ function build() {
       <ul>
         ${NAV.map((n) => `<li><a href="${n.href}" data-i18n="${n.key}"></a></li>`).join("")}
       </ul>
+      <div class="menu-langs" data-langs>
+        ${I18N.LANGS.map((l) => `<button type="button" data-lang="${l}" class="${l === I18N.lang ? "on" : ""}">${I18N.LABELS[l]}</button>`).join("")}
+      </div>
     </nav>
     <div class="menu-overlay" data-menu-overlay></div>
   `;
@@ -51,6 +49,18 @@ function build() {
     if (a.getAttribute("href") === here) a.classList.add("is-active");
   });
   Array.from(wrap.children).reverse().forEach((el) => document.body.prepend(el));
+}
+
+/** Cambia de idioma con un fundido suave del contenido. */
+function setLangFade(l) {
+  if (l === I18N.lang) return;
+  const main = document.querySelector("main");
+  if (!main) return I18N.set(l);
+  main.classList.add("lang-fade");
+  setTimeout(() => {
+    I18N.set(l);
+    main.classList.remove("lang-fade");
+  }, 220);
 }
 
 function wire() {
@@ -64,20 +74,13 @@ function wire() {
   overlay?.addEventListener("click", close);
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
 
-  const toggle = document.querySelector("[data-lang-toggle]");
-  // Fundido suave: oculta el contenido, cambia de idioma mientras está invisible, y reaparece.
-  toggle?.addEventListener("click", () => {
-    const main = document.querySelector("main");
-    if (!main) return I18N.cycle();
-    main.classList.add("lang-fade");
-    setTimeout(() => {
-      I18N.cycle();
-      main.classList.remove("lang-fade");
-    }, 220);
-  });
+  document.querySelectorAll("[data-langs] [data-lang]").forEach((b) =>
+    b.addEventListener("click", () => setLangFade(b.dataset.lang))
+  );
   document.addEventListener("qnc:lang", () => {
-    const code = toggle?.querySelector(".lang-code");
-    if (code) code.textContent = I18N.label();
+    document.querySelectorAll("[data-langs] [data-lang]").forEach((b) =>
+      b.classList.toggle("on", b.dataset.lang === I18N.lang)
+    );
   });
 }
 

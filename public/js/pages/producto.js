@@ -6,7 +6,7 @@ import { mountLayout } from "../core/layout.js";
 import { I18N } from "../core/i18n.js";
 import { fetchProducto, escapeHtml, formatPrice, stockTotal } from "../core/data.js";
 import { addToCart } from "../core/cart.js";
-import { tituloHTML } from "../core/ui.js";
+import { tituloHTML, toast } from "../core/ui.js";
 
 mountLayout();
 
@@ -89,12 +89,9 @@ function render() {
     t.addEventListener("click", () => go(Number(t.dataset.thumb)))
   );
 
-  root.querySelector("[data-add]")?.addEventListener("click", (e) => {
+  root.querySelector("[data-add]")?.addEventListener("click", () => {
     addToCart({ id: p.id, titulo: p.titulo, autor: p.autor, precio: p.precio, peso: p.peso || 0, img: p.imgs[0] || "" });
-    const btn = e.currentTarget;
-    const prev = btn.textContent;
-    btn.textContent = I18N.s("product.added");
-    setTimeout(() => (btn.textContent = prev), 1200);
+    toast(I18N.s("product.added"));
   });
 }
 

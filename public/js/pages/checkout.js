@@ -6,7 +6,7 @@ import { mountLayout } from "../core/layout.js";
 import { I18N } from "../core/i18n.js";
 import { CONFIG } from "../core/config.js";
 import { fetchEnvios, escapeHtml, formatPrice, precioEnvio } from "../core/data.js";
-import { getCart, cartTotal, cartWeight, updateQty, removeItem } from "../core/cart.js";
+import { getCart, cartTotal, cartWeight, setQty, removeItem } from "../core/cart.js";
 
 mountLayout();
 
@@ -35,11 +35,7 @@ function render() {
       <div class="carrito-item" data-id="${escapeHtml(it.id)}">
         ${it.img ? `<img src="${it.img}" alt="">` : "<span></span>"}
         <span class="it-titulo">${escapeHtml(tituloTxt(it))}</span>
-        <span class="carrito-qty">
-          <button data-dec aria-label="−">−</button>
-          <span>${it.cantidad}</span>
-          <button data-inc aria-label="+">+</button>
-        </span>
+        <input class="carrito-qty" type="number" min="1" step="1" value="${it.cantidad}" data-qty aria-label="cantidad" />
         <span>${formatPrice(it.precio * it.cantidad)}
           <button class="carrito-remove" data-remove aria-label="quitar">×</button>
         </span>
@@ -49,8 +45,8 @@ function render() {
 
   listEl.querySelectorAll(".carrito-item").forEach((row) => {
     const id = row.dataset.id;
-    row.querySelector("[data-dec]").addEventListener("click", () => { updateQty(id, -1); render(); });
-    row.querySelector("[data-inc]").addEventListener("click", () => { updateQty(id, +1); render(); });
+    const qty = row.querySelector("[data-qty]");
+    qty.addEventListener("change", () => { setQty(id, qty.value); render(); });
     row.querySelector("[data-remove]").addEventListener("click", () => { removeItem(id); render(); });
   });
 

@@ -47,6 +47,15 @@ export function updateQty(id, delta) {
   setCart(cart);
 }
 
+/** Fija la cantidad de un ítem (input editable). 0 o menos → lo elimina. */
+export function setQty(id, n) {
+  const cantidad = Math.max(0, Math.floor(Number(n) || 0));
+  const cart = getCart()
+    .map((it) => (it.id === id ? { ...it, cantidad } : it))
+    .filter((it) => it.cantidad > 0);
+  setCart(cart);
+}
+
 export function removeItem(id) {
   setCart(getCart().filter((it) => it.id !== id));
 }
