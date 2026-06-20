@@ -115,6 +115,16 @@ track?.addEventListener("scroll", () => {
   requestAnimationFrame(() => { updateMarker(); ticking = false; });
 });
 
+// Flechas del marcador: saltan al evento anterior/siguiente (‹ más antiguo, › más nuevo).
+function scrollToAdjacent(dir) {
+  if (!track) return;
+  const snaps = [...track.querySelectorAll("[data-snap]")];
+  const i = snaps.indexOf(nearestToCenter());
+  snaps[i + dir]?.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+}
+document.querySelector("[data-cal-prev]")?.addEventListener("click", () => scrollToAdjacent(-1));
+document.querySelector("[data-cal-next]")?.addEventListener("click", () => scrollToAdjacent(1));
+
 async function init() {
   try {
     eventos = await fetchEventos();

@@ -64,7 +64,7 @@ button { font: inherit; color: inherit; }
   cursor: pointer;
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 2.3rem;
+  font-size: 1.75rem;
   line-height: 1;
   padding: 0;
 }
@@ -78,7 +78,7 @@ button { font: inherit; color: inherit; }
   position: relative;
   display: inline-block;
 }
-.hdr-cart img { height: 80px; width: auto; }
+.hdr-cart img { height: 56px; width: auto; }
 .cart-badge {
   position: absolute;
   top: 2px;
@@ -184,6 +184,7 @@ main.lang-fade { opacity: 0; }
 
 .card { display: flex; flex-direction: column; }
 .card-img {
+  position: relative;
   aspect-ratio: 3 / 4;
   display: flex;
   align-items: center;
@@ -197,6 +198,26 @@ main.lang-fade { opacity: 0; }
   font-style: italic;
   font-family: var(--font-serif);
 }
+/* Segunda foto que aparece al pasar el cursor (solo en dispositivos con hover). */
+.card-img-alt {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+@media (hover: hover) {
+  .card:hover .card-img-alt { opacity: 1; }
+}
+/* "agotado": punto rojo (nítido) + palabra con opacidad baja. */
+.card-meta .soldout { display: inline-flex; align-items: center; gap: 0.4em; white-space: nowrap; }
+.card-meta .soldout .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e02424;
+  flex: 0 0 auto;
+}
+.card-meta .soldout .txt { opacity: 0.45; }
 
 .card-titulo {
   font-family: var(--font-serif);
@@ -267,6 +288,46 @@ main.lang-fade { opacity: 0; }
 .galeria-thumbs button img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .galeria-thumbs button:hover { opacity: 0.8; }
 .galeria-thumbs button.on { opacity: 1; outline: 1px solid var(--fg); outline-offset: 1px; }
+.galeria-stage img { cursor: zoom-in; }
+
+/* Lightbox: imagen ampliada a pantalla completa al clicar. */
+.qnc-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.97);
+}
+.qnc-lightbox.show { display: flex; }
+.qnc-lightbox .lb-img { max-width: 92vw; max-height: 92vh; object-fit: contain; cursor: zoom-out; }
+.qnc-lightbox .lb-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.4rem;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 2.4rem;
+  line-height: 1;
+}
+.qnc-lightbox .lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  line-height: 1;
+  padding: 0.4rem 1rem;
+  color: var(--fg);
+}
+.qnc-lightbox .lb-nav:hover { opacity: 0.5; }
+.qnc-lightbox .lb-nav.prev { left: 0.5rem; }
+.qnc-lightbox .lb-nav.next { right: 0.5rem; }
 
 .ficha { width: 100%; border-collapse: collapse; margin-bottom: 1.8rem; }
 .ficha td {
@@ -305,7 +366,7 @@ main.lang-fade { opacity: 0; }
   font-size: 1.25rem;
   margin-bottom: 1.4rem;
 }
-.producto-meta .autor { font-weight: 500; }
+.producto-meta .autor { font-weight: 400; font-size: 0.95rem; }
 .producto-meta .precio { color: var(--muted); font-size: 1.05rem; }
 .producto-desc { white-space: pre-line; font-size: 0.95rem; max-width: 46ch; }
 
@@ -512,6 +573,19 @@ main.lang-fade { opacity: 0; }
   border-bottom: 9px solid var(--fg);
   margin-bottom: 0.4rem;
 }
+.cal-marker-row { display: flex; align-items: center; gap: 0.6rem; }
+.cal-arrow {
+  pointer-events: auto;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  line-height: 1;
+  padding: 0 0.3rem;
+  color: var(--fg);
+}
+.cal-arrow:hover { opacity: 0.5; }
 .cal-date { font-family: var(--font-serif); font-style: italic; font-size: 1.35rem; line-height: 1; }
 .cal-time { font-size: 0.7rem; color: var(--muted); margin-top: 0.2rem; }
 
@@ -553,9 +627,9 @@ main.lang-fade { opacity: 0; }
 @media (max-width: 760px) {
   :root { --hdr-h: 76px; }
   .qnc-header { padding: 0.8rem 1rem 0.5rem; }
-  .btn-menu { font-size: 1.7rem; }
+  .btn-menu { font-size: 1.4rem; }
   .hdr-logo img { height: 54px; }
-  .hdr-cart img { height: 54px; }
+  .hdr-cart img { height: 44px; }
 
   .tienda-grid, .autores-grid { grid-template-columns: repeat(2, 1fr); gap: 1.6rem 1rem; }
 

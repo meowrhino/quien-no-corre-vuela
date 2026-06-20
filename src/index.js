@@ -134,6 +134,7 @@ app.post("/crear-sesion", async (c) => {
     const p = findProducto(it.id);
     if (!p) return c.json({ error: `producto ${it.id} no existe` }, 400);
     if (p.activo === false) return c.json({ error: `producto ${it.id} no disponible` }, 400);
+    if (p.agotado === true) return c.json({ error: `producto ${it.id} agotado` }, 409);
 
     const cantidad = Number(it.cantidad);
     if (!Number.isInteger(cantidad) || cantidad <= 0)

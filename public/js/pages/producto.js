@@ -51,7 +51,7 @@ function galeriaHTML() {
 }
 
 function infoHTML() {
-  const agotado = p.activo !== false && stockTotal(p) <= 0;
+  const agotado = p.activo !== false && (p.agotado === true || stockTotal(p) <= 0);
   const proximamente = p.activo === false;
   let btn;
   if (proximamente) btn = `<button class="btn-add" disabled>${I18N.s("product.soon")}</button>`;
@@ -89,10 +89,53 @@ function render() {
     t.addEventListener("click", () => go(Number(t.dataset.thumb)))
   );
 
+  // Clic en la imagen → ampliar a pantalla completa (lightbox).
+  stage?.addEventListener("click", () => openLightbox(idx));
+
   root.querySelector("[data-add]")?.addEventListener("click", () => {
     addToCart({ id: p.id, titulo: p.titulo, autor: p.autor, precio: p.precio, peso: p.peso || 0, img: p.imgs[0] || "" });
     toast(I18N.s("product.added"));
   });
+}
+
+// ─── lightbox (ampliar imagen) ───────────────────────────
+let lbIdx = 0;
+function lbSync() {
+  const img = document.querySelector(".qnc-lightbox .lb-img");
+  if (img) img.src = p.imgs[lbIdx];
+}
+function lbGo(d) { lbIdx = (lbIdx + d + p.imgs.length) % p.imgs.length; lbSync(); }
+function closeLightbox() { document.querySelector(".qnc-lightbox")?.classList.remove("show"); }
+function lbKey(e) {
+  const ov = document.querySelector(".qnc-lightbox");
+  if (!ov || !ov.classList.contains("show")) return;
+  if (e.key === "Escape") closeLightbox();
+  else if (e.key === "ArrowLeft") lbGo(-1);
+  else if (e.key === "ArrowRight") lbGo(1);
+}
+function openLightbox(startIdx) {
+  if (!p?.imgs?.length) return;
+  lbIdx = startIdx;
+  let ov = document.querySelector(".qnc-lightbox");
+  if (!ov) {
+    ov = document.createElement("div");
+    ov.className = "qnc-lightbox";
+    ov.innerHTML = `
+      <button class="lb-close" type="button" aria-label="cerrar">×</button>
+      <button class="lb-nav prev" type="button" aria-label="anterior">‹</button>
+      <img class="lb-img" alt="">
+      <button class="lb-nav next" type="button" aria-label="siguiente">›</button>`;
+    document.body.appendChild(ov);
+    ov.querySelector(".lb-close").addEventListener("click", closeLightbox);
+    ov.querySelector(".lb-img").addEventListener("click", closeLightbox);
+    ov.addEventListener("click", (e) => { if (e.target === ov) closeLightbox(); });
+    ov.querySelector(".lb-nav.prev").addEventListener("click", (e) => { e.stopPropagation(); lbGo(-1); });
+    ov.querySelector(".lb-nav.next").addEventListener("click", (e) => { e.stopPropagation(); lbGo(1); });
+    document.addEventListener("keydown", lbKey);
+  }
+  ov.querySelectorAll(".lb-nav").forEach((b) => (b.hidden = p.imgs.length < 2));
+  lbSync();
+  ov.classList.add("show");
 }
 
 async function init() {

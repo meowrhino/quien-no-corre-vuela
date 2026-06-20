@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <rect width="600" height="800" fill="#f3f3f3"/>
+  <text x="300" y="430" font-size="320" text-anchor="middle" dominant-baseline="middle">🐱</text>
+  <text x="300" y="660" font-size="44" text-anchor="middle" font-family="Georgia, serif" font-style="italic" fill="#444">prueba</text>
+</svg>

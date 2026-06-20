@@ -97,7 +97,8 @@
       "en": "The fanzine “Pont Neuf” revolves around the idea of process which, on the one hand, reveals the technical process that takes place in the analog darkroom (learning a new technique —in this case, Lith printing—) along with everything inherent to the act of learning itself: mistakes, notes, and different versions of the same image, where time itself leaves traces of evolution and improvement, sometimes subtle, other times more evident.\n\nAt the same time, it presents a journey through different cities and portraits of the same person at different moments over the course of a year, as witnesses to a bond. The images intertwine with writings and test prints. After all, isn’t a bond something that is built over time, through successes and mistakes, changes and learning?"
     },
     "stockInicial": 20,
-    "activo": true
+    "activo": true,
+    "agotado": true
   },
   {
     "id": "black-cover",
@@ -182,5 +183,27 @@
     },
     "stockInicial": 50,
     "activo": false
+  },
+  {
+    "id": "gatito",
+    "titulo": ["🐱 gatito"],
+    "autor": "test",
+    "autorId": "test",
+    "precio": 1.00,
+    "peso": 10,
+    "imgs": [
+      "img/productos/gatito/1.svg"
+    ],
+    "ficha": {
+      "editorial": "quien no corre, vuela",
+      "edicion": { "es": "producto de prueba", "ca": "producte de prova", "en": "test product" }
+    },
+    "descripcion": {
+      "es": "Producto de prueba para testear el flujo de compra. Borrar antes de abrir la tienda. 🐱",
+      "ca": "Producte de prova per testar el flux de compra. Esborrar abans d'obrir la botiga. 🐱",
+      "en": "Test product to check the checkout flow. Delete before launch. 🐱"
+    },
+    "stockInicial": 99,
+    "activo": true
   }
 ]
