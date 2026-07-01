@@ -4,7 +4,7 @@
  */
 import { mountLayout } from "../core/layout.js";
 import { I18N } from "../core/i18n.js";
-import { fetchProducto, escapeHtml, formatPrice, stockTotal } from "../core/data.js";
+import { fetchProducto, escapeHtml, formatPrice, estaAgotado } from "../core/data.js";
 import { addToCart } from "../core/cart.js";
 import { tituloHTML, toast } from "../core/ui.js";
 
@@ -51,7 +51,7 @@ function galeriaHTML() {
 }
 
 function infoHTML() {
-  const agotado = p.activo !== false && (p.agotado === true || stockTotal(p) <= 0);
+  const agotado = estaAgotado(p);
   const proximamente = p.activo === false;
   let btn;
   if (proximamente) btn = `<button class="btn-add" disabled>${I18N.s("product.soon")}</button>`;

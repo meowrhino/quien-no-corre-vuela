@@ -44,6 +44,15 @@ export function stockTotal(p) {
   return Object.values(p.stockByTalla || {}).reduce((n, v) => n + Number(v || 0), 0);
 }
 
+/**
+ * Un producto está agotado si está activo pero marcado `agotado` o sin stock vivo.
+ * Los "próximamente" (activo:false) no cuentan como agotados. Criterio único del front;
+ * el servidor recalcula por su cuenta al crear la sesión de pago.
+ */
+export function estaAgotado(p) {
+  return p.activo !== false && (p.agotado === true || stockTotal(p) <= 0);
+}
+
 /** Precio de envío según zona (tramos por peso en gramos) y peso total. */
 export function precioEnvio(zona, gramos) {
   if (!zona || !Array.isArray(zona.tramos)) return 0;

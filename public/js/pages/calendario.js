@@ -125,6 +125,12 @@ function scrollToAdjacent(dir) {
 document.querySelector("[data-cal-prev]")?.addEventListener("click", () => scrollToAdjacent(-1));
 document.querySelector("[data-cal-next]")?.addEventListener("click", () => scrollToAdjacent(1));
 
+// Teclado: ← / → mueven al evento anterior/siguiente (natural en portátil sin trackpad).
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") { e.preventDefault(); scrollToAdjacent(-1); }
+  else if (e.key === "ArrowRight") { e.preventDefault(); scrollToAdjacent(1); }
+});
+
 async function init() {
   try {
     eventos = await fetchEventos();

@@ -2,7 +2,7 @@
  * core/ui.js — fragmentos de HTML reutilizables entre páginas.
  */
 import { I18N } from "./i18n.js";
-import { escapeHtml, formatPrice, stockTotal } from "./data.js";
+import { escapeHtml, formatPrice, estaAgotado } from "./data.js";
 
 let toastTimer = null;
 /** Muestra un aviso flotante temporal (p.ej. "añadido al carrito"). */
@@ -33,7 +33,7 @@ export function productoCardHTML(p) {
   const titulo = Array.isArray(p.titulo) ? p.titulo : [p.titulo];
   const imgs = p.imgs || [];
   const cover = imgs[0];
-  const agotado = p.activo !== false && (p.agotado === true || stockTotal(p) <= 0);
+  const agotado = estaAgotado(p);
   const img = cover
     ? `<div class="card-img">
         <img src="${cover}" alt="${escapeHtml(titulo.join(" "))}" loading="lazy">
