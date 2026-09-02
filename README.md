@@ -16,6 +16,7 @@ public/            La web (Cloudflare la sirve como static assets)
   css/  img/  admin/
   data/            ← contenido editable (ver abajo)
 src/index.js       El Worker: solo /api/* (Hono). El resto lo sirven los assets de public/.
+src/notify.js      Avisos por email (pedidos y mensajes). Apagado si EMAIL_TIENDA está vacío.
 wrangler.toml      main, [assets] directory=public, binding D1 (DB → shop)
 ```
 El material fuente (`WEB_MANU/`, `referencias/`) queda en la raíz y **no** se publica.
@@ -52,6 +53,19 @@ contenido son objetos `{es,ca,en}` dentro de los JSON.
 
 ## Admin
 `/admin/` con el `ADMIN_TOKEN`: pedidos, stock, altas de newsletter y mensajes de contacto.
+
+## Avisos por email
+`src/notify.js` manda cuatro avisos: **pedido nuevo** y **mensaje de contacto** a la tienda,
+**confirmación** y **pedido enviado** al cliente. Ahora mismo están **apagados**: con
+`EMAIL_TIENDA` vacío en `wrangler.toml` no se manda nada y todo funciona igual (se loguea).
+
+Para encenderlos (ver los pasos exactos en `wrangler.toml` y **[NEXT_STEPS.md](NEXT_STEPS.md)**):
+dar de alta el dominio en Email Sending, verificar el email de destino, rellenar `EMAIL_TIENDA`
+y descomentar el bloque `[[send_email]]`.
+
+Los avisos **a la tienda** son gratis en plan free (el destino está verificado en la cuenta).
+Los avisos **al cliente** requieren Workers Paid o una clave de `RESEND_API_KEY`; hasta
+entonces fallan solos y se loguean, sin afectar al resto. El recibo de compra ya lo manda Stripe.
 
 ## Newsletter
 La página `/newsletter` **recoge** emails y los guarda en D1 (sin duplicados); se ven en

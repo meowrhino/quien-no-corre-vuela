@@ -1,6 +1,11 @@
 # Copia este archivo a .dev.vars (ignorado por git) para desarrollo local con wrangler.
-# En producción, configura los secretos con: wrangler pages secret put NOMBRE
+# En producción, los secretos se ponen con: npx wrangler secret put NOMBRE
 
 STRIPE_SECRET_KEY="sk_test_xxx"
 STRIPE_WEBHOOK_SECRET="whsec_xxx"
 ADMIN_TOKEN="cambiame"
+
+# Avisos por email — SOLO si se usa Resend como transporte (ver README).
+# Con el binding send_email de Cloudflare esto no hace falta.
+# Vacío = los avisos no se mandan y se loguean.
+RESEND_API_KEY=""

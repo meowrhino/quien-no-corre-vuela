@@ -20,6 +20,31 @@ database_id = "57f55099-2e3f-4ea5-827f-232224cf3f70"
 [vars]
 FRONTEND_URL = ""
 
+# ─── Avisos por email (ver README, "Avisos por email") ───────────────────────
+# Estado: EMAIL_TIENDA vacío ⇒ NO se manda nada todavía. La tienda funciona igual.
+# Para encenderlo faltan dos cosas (ninguna es código):
+#   1. npx wrangler email sending enable quiennocorrevuela.com
+#      (añade SPF y DKIM — OJO si el dominio ya tiene un SPF, hay que fusionarlos)
+#   2. npx wrangler email routing addresses create <email-de-andrea>
+#      (verifica el destino; es lo que hace que los avisos internos sean gratis)
+#   3. rellenar EMAIL_TIENDA aquí abajo y descomentar el bloque [[send_email]].
+#
+# noreply@ no necesita buzón real: basta con que el dominio esté dado de alta.
+EMAIL_FROM = "noreply@quiennocorrevuela.com"
+EMAIL_TIENDA = ""            # ← email de Andrea. Varios separados por coma.
+EMAIL_RESPUESTA = ""         # ← a dónde responde el cliente (noreply@ no lo lee nadie)
+TIENDA_NOMBRE = "Quien no corre, vuela"
+
+# Transporte: binding de Cloudflare, sin API key. Descomentar tras el paso 1.
+#   destination_address restringe el binding a UNA dirección: déjalo si solo quieres
+#   los avisos internos (gratis en plan free). Quítalo para escribir también a clientes,
+#   lo que requiere Workers Paid.
+# [[send_email]]
+# name = "EMAIL"
+# destination_address = ""
+
+# Alternativa sin tocar DNS: Resend → npx wrangler secret put RESEND_API_KEY
+
 # Los secretos se añaden por CLI (NO van aquí):
 #   npx wrangler secret put STRIPE_SECRET_KEY
 #   npx wrangler secret put STRIPE_WEBHOOK_SECRET

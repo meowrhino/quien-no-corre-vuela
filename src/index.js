@@ -13,6 +13,10 @@
  *
  * Bindings (wrangler.toml + .dev.vars): env.DB, env.STRIPE_SECRET_KEY,
  *   env.STRIPE_WEBHOOK_SECRET, env.ADMIN_TOKEN, env.FRONTEND_URL.
+ *
+ * Avisos por email (src/notify.js): env.EMAIL_FROM, env.EMAIL_TIENDA, env.EMAIL_RESPUESTA,
+ *   env.TIENDA_NOMBRE + binding env.EMAIL (o env.RESEND_API_KEY). Con EMAIL_TIENDA vacío
+ *   no se manda nada y todo lo demás funciona igual.
  */
 
 import { Hono } from "hono";
@@ -21,6 +25,13 @@ import Stripe from "stripe";
 import productos from "../public/data/productos.json";
 import envios from "../public/data/envios.json";
 import { normalizeStockInicial, precioEnvio, nombreDeZona, esZonaRecogida } from "../public/js/core/shared.js";
+import {
+  notifPedidoNuevo,
+  notifPedidoConfirmado,
+  notifMensajeNuevo,
+  notifPedidoEnviado,
+  enSegundoPlano,
+} from "./notify.js";
 
 const app = new Hono().basePath("/api");
 
@@ -312,6 +323,23 @@ app.post("/stripe-webhook", async (c) => {
       // el INSERT falla y el descuento de stock se revierte con él (idempotencia). No "arreglar".
       await c.env.DB.batch(stmts);
       console.log(`[webhook] pedido ${pedidoId} registrado`);
+
+      // Avisos por email. Van DESPUÉS del batch a propósito: si Stripe reenvía el evento,
+      // el INSERT revienta por el UNIQUE, saltamos al catch y no se manda un segundo email.
+      // La idempotencia de los avisos sale gratis de la que ya había.
+      // waitUntil: Stripe recibe su 200 sin esperar a que salgan los correos.
+      const pedido = {
+        id: pedidoId,
+        items,
+        envio: envioInfo,
+        total: session.amount_total,
+        currency: session.currency,
+        email: session.customer_details?.email || null,
+      };
+      enSegundoPlano(
+        c,
+        Promise.all([notifPedidoNuevo(c.env, pedido), notifPedidoConfirmado(c.env, pedido)])
+      );
     } catch (err) {
       console.error("Error procesando checkout.session.completed:", err);
     }
@@ -340,6 +368,8 @@ app.post("/contacto", async (c) => {
   await c.env.DB.prepare(`INSERT INTO mensajes (id, nombre, email, texto) VALUES (?, ?, ?, ?)`)
     .bind(id, nombre ? String(nombre).slice(0, 200) : null, email ? String(email).slice(0, 200) : null, msg.slice(0, 5000))
     .run();
+  // Aviso a la tienda, con replyTo al remitente: se contesta dándole a "Responder".
+  enSegundoPlano(c, notifMensajeNuevo(c.env, { id, nombre, email, texto: msg }));
   return c.json({ ok: true });
 });
 
@@ -382,6 +412,16 @@ admin.post("/pedido-estado", async (c) => {
     .bind(estado, String(id))
     .run();
   if (!r.meta.changes) return c.json({ error: "pedido no encontrado" }, 404);
+
+  // Al pasar a "enviado", avisamos al cliente. El UPDATE no devuelve la fila, así que
+  // la leemos (solo en este caso). items/envio vienen como TEXT: notify.js los parsea.
+  if (estado === "enviado") {
+    const p = await c.env.DB.prepare(`SELECT email, items, envio FROM pedidos WHERE id = ?`)
+      .bind(String(id))
+      .first();
+    if (p?.email) enSegundoPlano(c, notifPedidoEnviado(c.env, { id: String(id), ...p }));
+  }
+
   return c.json({ ok: true });
 });
 

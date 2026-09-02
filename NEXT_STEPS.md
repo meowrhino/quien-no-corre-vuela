@@ -14,6 +14,31 @@ tienda**, en orden. Nada de esto es programar: son claves, contenido y comprobac
 - [ ] Dashboard de Stripe: activar **Bizum** (Settings → Payment methods) y **recibos**
       (Settings → Emails → Successful payments). Cupones: Products → Coupons → Promotion codes.
 
+## 1bis. Avisos por email (código listo, falta encenderlo)
+El Worker ya manda cuatro avisos (`src/notify.js`), pero están **apagados**: `EMAIL_TIENDA`
+está vacío en `wrangler.toml`. Sin esto, nadie se entera de que ha entrado un pedido — hay
+que acordarse de mirar `/admin/tickets.html`.
+
+- [ ] **Decidir el email de la tienda** (el de Andrea, o uno nuevo). Es el que recibirá los
+      pedidos y los mensajes de contacto.
+- [ ] Dar de alta el dominio en Email Sending:
+      `npx wrangler email sending enable quiennocorrevuela.com`
+      ⚠️ Añade SPF (TXT) y DKIM (CNAME). **Si el dominio ya tiene un registro SPF, hay que
+      fusionarlos, no poner dos** — dos SPF rompen la autenticación.
+      ⚠️ No confundir con Email **Routing**: ese añade **MX** y rompería el correo entrante
+      del dominio si ya se usa.
+- [ ] Verificar el destino: `npx wrangler email routing addresses create <email-de-andrea>`
+      (llega un correo con un enlace; hay que pinchar). Esto es lo que hace que los avisos
+      internos sean **gratis en plan free**.
+- [ ] Rellenar `EMAIL_TIENDA` y `EMAIL_RESPUESTA` en `wrangler.toml`, descomentar el bloque
+      `[[send_email]]` y hacer push.
+- [ ] Comprobarlo en la compra de prueba del punto 3.
+- [ ] *Opcional, de pago:* los avisos **al cliente** (confirmación y "pedido enviado") necesitan
+      **Workers Paid** (~5 $/mes) o `npx wrangler secret put RESEND_API_KEY`. Sin eso fallan
+      solos y se loguean; los avisos internos salen igual. El recibo de compra ya lo manda Stripe.
+- [ ] Nota: `npx wrangler email sending list` da `Unauthorized [code: 2036]` con el token
+      actual — hace falta un `npx wrangler login` nuevo para que coja el permiso de email.
+
 ## 2. Contenido (cliente)
 - [ ] `public/legal.html`: sustituir los `[CORCHETES]` (nombre fiscal, NIF, dirección, email,
       plazo de preparación).
@@ -23,7 +48,8 @@ tienda**, en orden. Nada de esto es programar: son claves, contenido y comprobac
 
 ## 3. Prueba y apertura
 - [ ] Compra de prueba en modo test con `gatito` (tarjeta `4242 4242 4242 4242`) → el pedido
-      sale en `/admin/tickets.html` con dirección, zona y estado.
+      sale en `/admin/tickets.html` con dirección, zona y estado, y **llega el aviso por email**
+      (si el punto 1bis está hecho).
 - [ ] Borrar `gatito` de `productos.json` (+ su imagen) y push.
 - [ ] Cambiar a la clave live (`wrangler secret put STRIPE_SECRET_KEY` con `sk_live_…`) y
       recrear el webhook en modo live.
